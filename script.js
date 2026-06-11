@@ -23,7 +23,7 @@ function sendWhatsApp(event) {
     `Please share the details.`;
 
   // Replace this number with Chibi Learn Up WhatsApp number later.
-  const whatsappNumber = "919999999999";
+  const whatsappNumber = "919539238317";
 
   window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
 }
