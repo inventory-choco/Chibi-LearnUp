@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Chibi Learn Up | Online Tuition & Skill Classes</title>
+
+  <meta name="description" content="Chibi Learn Up is a learning platform offering tuition classes, phonics, drawing, spoken English and activity-based learning for children." />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container nav">
+      <div class="logo">
+        <span>Chibi</span> Learn Up
+      </div>
+
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+      <nav id="navMenu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#classes">Classes</a>
+        <a href="#booking">Book Class</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <p class="tagline">A Great Place to Learn</p>
+        <h1>Online Tuition & Skill Classes for Bright Young Learners</h1>
+        <p>
+          Chibi Learn Up helps children learn with confidence through interactive tuition,
+          activity-based learning, phonics, drawing, spoken English and more.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#booking" class="btn primary">Book a Free Enquiry</a>
+          <a href="#classes" class="btn secondary">View Classes</a>
+        </div>
+
+        <div class="hero-badges">
+          <span>Admissions Open 2026–2027</span>
+          <span>Learn From Anywhere</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>Why Parents Choose Us</h3>
+        <ul>
+          <li>Personal attention for every child</li>
+          <li>Flexible online learning</li>
+          <li>Fun activities with academics</li>
+          <li>Confidence-building classes</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="container two-column">
+      <div>
+        <p class="section-label">About Chibi Learn Up</p>
+        <h2>Learning made simple, joyful and effective</h2>
+        <p>
+          Chibi Learn Up is created to support children in their academic journey
+          while also helping them explore creativity, communication and confidence.
+          Our classes are designed to make learning enjoyable and easy to understand.
+        </p>
+        <p>
+          We focus on regular learning, concept clarity, child-friendly teaching and
+          activity-based methods that help students improve step by step.
+        </p>
+      </div>
+
+      <div class="info-box">
+        <h3>Our Focus</h3>
+        <p>To explore the hidden talents of kids through learning, creativity and practice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Classes -->
+  <section class="section light" id="classes">
+    <div class="container">
+      <p class="section-label center">Our Classes</p>
+      <h2 class="center">Programs We Offer</h2>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon">📚</div>
+          <h3>Tuition Classes</h3>
+          <p>Subject support for school students with regular guidance and practice.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔤</div>
+          <h3>Phonics Classes</h3>
+          <p>Improve reading, pronunciation, spelling and early language skills.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🎨</div>
+          <h3>Drawing Classes</h3>
+          <p>Creative drawing activities to improve focus, imagination and confidence.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🗣️</div>
+          <h3>Spoken English</h3>
+          <p>Interactive sessions to help children speak clearly and confidently.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🌿</div>
+          <h3>Malayalam Learning</h3>
+          <p>Malayalam made easy and fun through guided learning methods.</p>
+        </div>
+
+        <div class="card">
+          <div class="icon">👧</div>
+          <h3>KG Activities</h3>
+          <p>Fun learning steps for young children through activity-based sessions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label center">Why Chibi Learn Up</p>
+      <h2 class="center">Built for Better Learning</h2>
+
+      <div class="features">
+        <div>
+          <h3>Individual Attention</h3>
+          <p>Children receive personal guidance based on their learning needs.</p>
+        </div>
+        <div>
+          <h3>Regular & Weekend Batches</h3>
+          <p>Flexible batches suitable for school schedules and parent convenience.</p>
+        </div>
+        <div>
+          <h3>Activity-Based Learning</h3>
+          <p>Learning is made engaging through activities, creativity and practice.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking -->
+  <section class="section light" id="booking">
+    <div class="container booking-wrap">
+      <div>
+        <p class="section-label">Book a Class</p>
+        <h2>Send an enquiry for admission or class booking</h2>
+        <p>
+          Fill in the details below. This demo form is currently connected to WhatsApp.
+          Later, we can connect it with database, admin panel and online payment.
+        </p>
+      </div>
+
+      <form class="booking-form" onsubmit="sendWhatsApp(event)">
+        <input type="text" id="studentName" placeholder="Student Name" required />
+        <input type="text" id="parentName" placeholder="Parent Name" required />
+        <input type="text" id="grade" placeholder="Class / Grade" required />
+
+        <select id="classType" required>
+          <option value="">Select Class Type</option>
+          <option>Tuition Classes</option>
+          <option>Phonics Classes</option>
+          <option>Drawing Classes</option>
+          <option>Spoken English</option>
+          <option>Malayalam Learning</option>
+          <option>KG Activities</option>
+        </select>
+
+        <input type="tel" id="phone" placeholder="Phone Number" required />
+
+        <button type="submit" class="btn primary full">Send Enquiry on WhatsApp</button>
+
+        <p class="small-note">
+          Payment gateway integration can be added after final approval.
+        </p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Payment Preview -->
+  <section class="section">
+    <div class="container payment-box">
+      <p class="section-label center">Online Fee Payment</p>
+      <h2 class="center">Payment Gateway Ready</h2>
+      <p class="center">
+        In the final website, parents can pay fees using card, UPI, net banking or wallet
+        through Razorpay. PayPal can be added mainly for international payments if required.
+      </p>
+
+      <div class="payment-cards">
+        <span>Card</span>
+        <span>UPI</span>
+        <span>Net Banking</span>
+        <span>Wallet</span>
+        <span>PayPal Optional</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section dark" id="contact">
+    <div class="container contact">
+      <div>
+        <h2>Contact Chibi Learn Up</h2>
+        <p>For admission enquiry, class booking or fee details, contact us today.</p>
+      </div>
+
+      <div class="contact-buttons">
+        <a href="https://www.instagram.com/chibi_learnup/" target="_blank" class="btn secondary">Instagram</a>
+        <a href="https://www.facebook.com/chibi.learnup.1/" target="_blank" class="btn secondary">Facebook</a>
+        <a href="#booking" class="btn primary">Book Now</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Chibi Learn Up. All Rights Reserved.</p>
+    <p>Demo website designed for presentation purpose.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
