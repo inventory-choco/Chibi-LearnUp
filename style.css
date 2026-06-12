@@ -59,6 +59,13 @@ body {
   object-fit: contain;
 }
 
+.nav {
+  min-height: 86px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 nav {
   display: flex;
   gap: 22px;
@@ -627,5 +634,11 @@ footer {
 
   .payment-card {
     padding: 35px 22px;
+  }
+}
+
+@media (max-width: 900px) {
+  .logo-full {
+    width: 155px;
   }
 }
