@@ -13,6 +13,7 @@ body {
   color: #25304b;
   background: #ffffff;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 .container {
@@ -21,29 +22,22 @@ body {
   margin: auto;
 }
 
+/* Header */
+
 .header {
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
   box-shadow: 0 8px 28px rgba(20, 34, 68, 0.08);
   z-index: 999;
 }
 
 .nav {
-  min-height: 76px;
+  min-height: 86px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #24305a;
-  font-size: 22px;
-  font-weight: 900;
 }
 
 .logo {
@@ -52,18 +46,11 @@ body {
 }
 
 .logo-full {
-  width: 190px;
+  width: 210px;
   max-width: 70vw;
   height: auto;
   display: block;
   object-fit: contain;
-}
-
-.nav {
-  min-height: 86px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 nav {
@@ -87,7 +74,11 @@ nav a:hover {
   border: none;
   background: transparent;
   font-size: 28px;
+  cursor: pointer;
+  color: #24305a;
 }
+
+/* Hero */
 
 .hero {
   min-height: 720px;
@@ -174,7 +165,7 @@ nav a:hover {
 }
 
 .quick-points span {
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.85);
   color: #24305a;
   padding: 10px 14px;
   border-radius: 999px;
@@ -250,6 +241,8 @@ nav a:hover {
   background: #ff8a00;
 }
 
+/* Stats */
+
 .stats-section {
   margin-top: -45px;
   position: relative;
@@ -284,6 +277,8 @@ nav a:hover {
   color: #6b7280;
   font-size: 14px;
 }
+
+/* General Sections */
 
 .section {
   padding: 85px 0;
@@ -331,6 +326,8 @@ h2 {
   margin-bottom: 14px;
 }
 
+/* About */
+
 .about-box {
   background: linear-gradient(135deg, #24305a, #354377);
   color: white;
@@ -350,7 +347,7 @@ h2 {
 
 .about-box li {
   padding: 12px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .about-box li::before {
@@ -358,6 +355,8 @@ h2 {
   color: #ffbd59;
   font-weight: 900;
 }
+
+/* Programs */
 
 .program-grid {
   margin-top: 38px;
@@ -411,6 +410,8 @@ h2 {
   font-weight: 800;
 }
 
+/* Why Us */
+
 .why-grid {
   margin-top: 36px;
   display: grid;
@@ -434,6 +435,8 @@ h2 {
 .why-card p {
   color: #63708a;
 }
+
+/* Booking */
 
 .booking-section {
   background:
@@ -491,6 +494,8 @@ h2 {
   margin-bottom: 0 !important;
 }
 
+/* Payment */
+
 .payment-section {
   background: #ffffff;
 }
@@ -517,12 +522,14 @@ h2 {
 }
 
 .payment-options span {
-  background: rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.12);
   color: white;
   padding: 12px 16px;
   border-radius: 999px;
   font-weight: 800;
 }
+
+/* FAQ */
 
 .faq-grid {
   margin-top: 36px;
@@ -547,6 +554,8 @@ h2 {
   color: #63708a;
 }
 
+/* Final CTA */
+
 .final-cta {
   background: linear-gradient(135deg, #fff7e8, #eef6ff);
   padding: 70px 0;
@@ -559,6 +568,8 @@ h2 {
   flex-wrap: wrap;
 }
 
+/* Footer */
+
 footer {
   background: #1d2749;
   color: white;
@@ -567,7 +578,21 @@ footer {
   font-size: 14px;
 }
 
+/* Mobile */
+
 @media (max-width: 900px) {
+  .container {
+    width: 88%;
+  }
+
+  .nav {
+    min-height: 76px;
+  }
+
+  .logo-full {
+    width: 155px;
+  }
+
   .menu-btn {
     display: block;
   }
@@ -590,7 +615,7 @@ footer {
 
   .hero {
     min-height: auto;
-    padding: 60px 0 90px;
+    padding: 56px 0 90px;
   }
 
   .hero-grid,
@@ -601,7 +626,26 @@ footer {
   }
 
   .hero h1 {
-    font-size: 38px;
+    font-size: 34px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    text-align: center;
+  }
+
+  .quick-points {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .hero-visual {
@@ -610,6 +654,21 @@ footer {
 
   .main-card {
     inset: 40px 0;
+    padding: 34px;
+  }
+
+  .floating-card {
+    padding: 13px 16px;
+  }
+
+  .card-one {
+    top: 8px;
+    left: 0;
+  }
+
+  .card-two {
+    right: 0;
+    bottom: 10px;
   }
 
   .stats-grid,
@@ -624,8 +683,12 @@ footer {
     border-bottom: 1px solid #edf1f8;
   }
 
-  .cta-buttons {
-    justify-content: flex-start;
+  .stats-grid div:last-child {
+    border-bottom: none;
+  }
+
+  .section {
+    padding: 65px 0;
   }
 
   h2 {
@@ -635,10 +698,39 @@ footer {
   .payment-card {
     padding: 35px 22px;
   }
+
+  .cta-buttons {
+    justify-content: flex-start;
+  }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 480px) {
   .logo-full {
-    width: 155px;
+    width: 140px;
+  }
+
+  .hero h1 {
+    font-size: 31px;
+  }
+
+  .pill {
+    font-size: 14px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .student-card {
+    border-radius: 26px;
+  }
+
+  .main-card h3 {
+    font-size: 25px;
+  }
+
+  .main-card p {
+    font-size: 15px;
   }
 }
