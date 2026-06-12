@@ -58,16 +58,11 @@ body {
   margin-top: -4px;
 }
 
-.logo-mark {
-  width: 46px;
-  height: 46px;
-  border-radius: 15px;
-  background: linear-gradient(135deg, #ff8a00, #ffbd59);
-  color: #ffffff;
-  display: grid;
-  place-items: center;
-  font-weight: 900;
-  box-shadow: 0 10px 25px rgba(255, 138, 0, 0.25);
+.logo-img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  display: block;
 }
 
 nav {
