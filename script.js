@@ -26,76 +26,84 @@ function sendWhatsApp(event) {
   const whatsappNumber = "919539238317";
 
   window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
-let currentBanner = 0;
+document.addEventListener("DOMContentLoaded", function () {
+  const bannerTrack = document.getElementById("bannerTrack");
+  const bannerDots = document.getElementById("bannerDots");
+  const bannerPrev = document.getElementById("bannerPrev");
+  const bannerNext = document.getElementById("bannerNext");
 
-const bannerTrack = document.getElementById("bannerTrack");
-const bannerDots = document.getElementById("bannerDots");
+  if (!bannerTrack || !bannerDots) return;
 
-function getBannerCount() {
-  if (!bannerTrack) return 0;
-  return bannerTrack.querySelectorAll("img").length;
-}
+  const banners = bannerTrack.querySelectorAll("img");
+  let currentBanner = 0;
+  let bannerInterval;
 
-function createBannerDots() {
-  const total = getBannerCount();
+  function createDots() {
+    bannerDots.innerHTML = "";
 
-  if (!bannerDots || total === 0) return;
+    banners.forEach(function (_, index) {
+      const dot = document.createElement("button");
+      dot.setAttribute("aria-label", "Go to banner " + (index + 1));
 
-  bannerDots.innerHTML = "";
+      dot.addEventListener("click", function () {
+        currentBanner = index;
+        showBanner(currentBanner);
+        restartAutoSlide();
+      });
 
-  for (let i = 0; i < total; i++) {
-    const dot = document.createElement("button");
-    dot.setAttribute("aria-label", `Go to banner ${i + 1}`);
-    dot.addEventListener("click", function () {
-      currentBanner = i;
-      updateBanner();
+      bannerDots.appendChild(dot);
     });
-
-    bannerDots.appendChild(dot);
   }
 
-  updateBanner();
-}
+  function showBanner(index) {
+    banners.forEach(function (banner, bannerIndex) {
+      banner.classList.toggle("active", bannerIndex === index);
+    });
 
-function updateBanner() {
-  const total = getBannerCount();
-
-  if (!bannerTrack || total === 0) return;
-
-  bannerTrack.style.transform = `translateX(-${currentBanner * 100}%)`;
-
-  if (bannerDots) {
     const dots = bannerDots.querySelectorAll("button");
 
-    dots.forEach(function (dot, index) {
-      dot.classList.toggle("active", index === currentBanner);
+    dots.forEach(function (dot, dotIndex) {
+      dot.classList.toggle("active", dotIndex === index);
     });
   }
-}
 
-function nextBanner() {
-  const total = getBannerCount();
+  function nextBannerSlide() {
+    currentBanner = (currentBanner + 1) % banners.length;
+    showBanner(currentBanner);
+  }
 
-  if (total === 0) return;
+  function prevBannerSlide() {
+    currentBanner = (currentBanner - 1 + banners.length) % banners.length;
+    showBanner(currentBanner);
+  }
 
-  currentBanner = (currentBanner + 1) % total;
-  updateBanner();
-}
+  function startAutoSlide() {
+    bannerInterval = setInterval(nextBannerSlide, 4500);
+  }
 
-function prevBanner() {
-  const total = getBannerCount();
+  function restartAutoSlide() {
+    clearInterval(bannerInterval);
+    startAutoSlide();
+  }
 
-  if (total === 0) return;
+  if (bannerNext) {
+    bannerNext.addEventListener("click", function () {
+      nextBannerSlide();
+      restartAutoSlide();
+    });
+  }
 
-  currentBanner = (currentBanner - 1 + total) % total;
-  updateBanner();
-}
+  if (bannerPrev) {
+    bannerPrev.addEventListener("click", function () {
+      prevBannerSlide();
+      restartAutoSlide();
+    });
+  }
 
-createBannerDots();
-
-setInterval(function () {
-  nextBanner();
-}, 5000);
+  createDots();
+  showBanner(currentBanner);
+  startAutoSlide();
+});
   
 }
 
