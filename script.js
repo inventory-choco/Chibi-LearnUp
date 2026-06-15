@@ -1,6 +1,9 @@
 function toggleMenu() {
   const navMenu = document.getElementById("navMenu");
-  navMenu.classList.toggle("active");
+
+  if (navMenu) {
+    navMenu.classList.toggle("active");
+  }
 }
 
 function sendWhatsApp(event) {
@@ -22,10 +25,11 @@ function sendWhatsApp(event) {
     `Phone Number: ${phone}%0A%0A` +
     `Please share the details.`;
 
-  // Replace this number with Chibi Learn Up WhatsApp number later.
   const whatsappNumber = "919539238317";
 
   window.open(`https://wa.me/${whatsappNumber}?text=${message}`, "_blank");
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const bannerTrack = document.getElementById("bannerTrack");
   const bannerDots = document.getElementById("bannerDots");
@@ -35,6 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!bannerTrack || !bannerDots) return;
 
   const banners = bannerTrack.querySelectorAll("img");
+
+  if (banners.length === 0) return;
+
   let currentBanner = 0;
   let bannerInterval;
 
@@ -104,6 +111,3 @@ document.addEventListener("DOMContentLoaded", function () {
   showBanner(currentBanner);
   startAutoSlide();
 });
-  
-}
-
