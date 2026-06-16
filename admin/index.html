@@ -4,6 +4,31 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chibi Learn Up Admin</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    /* Make the preview area more manageable */
+    [class*="PreviewPane"] img,
+    [class*="preview"] img,
+    .cms-preview img {
+      max-width: 320px !important;
+      max-height: 180px !important;
+      object-fit: cover !important;
+      border-radius: 12px !important;
+      margin: 8px !important;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    /* Reduce oversized preview spacing */
+    [class*="PreviewPane"],
+    .cms-preview {
+      padding: 20px !important;
+      overflow: auto !important;
+    }
+  </style>
 </head>
 <body>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
