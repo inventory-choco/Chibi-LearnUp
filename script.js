@@ -65,7 +65,30 @@ function updateHero(data) {
     heroDescription.textContent = data.hero_description;
   }
 }
+function getSafeImagePath(imagePath) {
+  if (!imagePath) return "";
 
+  // Cloudinary or any full URL
+  if (imagePath.startsWith("http")) {
+    return imagePath;
+  }
+
+  // If Decap saves path as /assets/..., fix it for GitHub Pages
+  if (imagePath.startsWith("/assets/")) {
+    if (window.location.hostname.includes("github.io")) {
+      return "./" + imagePath.substring(1);
+    }
+
+    return imagePath;
+  }
+
+  // If Decap saves path as assets/..., keep it safe
+  if (imagePath.startsWith("assets/")) {
+    return "./" + imagePath;
+  }
+
+  return imagePath;
+}
 function renderBanners(banners) {
   const bannerTrack = document.getElementById("bannerTrack");
 
@@ -96,7 +119,7 @@ function renderEvents(events) {
     eventCard.className = "event-card";
 
     const img = document.createElement("img");
-    img.src = eventItem.image;
+   img.src = getSafeImagePath(eventItem.image);
     img.alt = eventItem.alt || "Chibi Learn Up Event " + (index + 1);
 
     eventCard.appendChild(img);
