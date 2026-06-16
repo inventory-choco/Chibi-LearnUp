@@ -208,3 +208,120 @@ function startBannerSlider() {
   showBanner(currentBanner);
   startAutoSlide();
 }
+
+function setupScrollRevealAnimations() {
+  const revealGroups = [
+    {
+      selector: ".hero-text",
+      animation: "reveal-left"
+    },
+    {
+      selector: ".hero-visual",
+      animation: "reveal-right"
+    },
+    {
+      selector: ".stats-grid > div",
+      animation: "reveal-up"
+    },
+    {
+      selector: ".about-grid > div:first-child",
+      animation: "reveal-left"
+    },
+    {
+      selector: ".about-box",
+      animation: "reveal-right"
+    },
+    {
+      selector: ".section-label, .section h2, .events-intro",
+      animation: "reveal-up"
+    },
+    {
+      selector: ".program-card",
+      animation: "reveal-up"
+    },
+    {
+      selector: ".event-card",
+      animation: "reveal-zoom"
+    },
+    {
+      selector: ".why-card",
+      animation: "reveal-up"
+    },
+    {
+      selector: ".booking-grid > div:first-child",
+      animation: "reveal-left"
+    },
+    {
+      selector: ".booking-form",
+      animation: "reveal-right"
+    },
+    {
+      selector: ".faq-item",
+      animation: "reveal-up"
+    },
+    {
+      selector: ".final-cta h2, .final-cta p",
+      animation: "reveal-left"
+    },
+    {
+      selector: ".cta-buttons",
+      animation: "reveal-right"
+    }
+  ];
+
+  const revealItems = [];
+
+  revealGroups.forEach(function (group) {
+    const elements = document.querySelectorAll(group.selector);
+
+    elements.forEach(function (element, index) {
+      if (element.classList.contains("reveal-item")) return;
+
+      element.classList.add("reveal-item", group.animation);
+
+      const delay = Math.min(index * 70, 350);
+      element.style.transitionDelay = delay + "ms";
+
+      revealItems.push(element);
+    });
+  });
+
+  if (!("IntersectionObserver" in window)) {
+    revealItems.forEach(function (item) {
+      item.classList.add("reveal-visible");
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("reveal-visible");
+        } else {
+          entry.target.classList.remove("reveal-visible");
+        }
+      });
+    },
+    {
+      threshold: 0.16,
+      rootMargin: "0px 0px -40px 0px"
+    }
+  );
+
+  revealItems.forEach(function (item) {
+    observer.observe(item);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  setupScrollRevealAnimations();
+
+  setTimeout(function () {
+    setupScrollRevealAnimations();
+  }, 600);
+});
+
+setTimeout(function () {
+  setupScrollRevealAnimations();
+}, 600);
