@@ -31,6 +31,80 @@ function sendWhatsApp(event) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+  loadWebsiteContent();
+});
+
+async function loadWebsiteContent() {
+  try {
+    const response = await fetch("./content/site.json?v=" + Date.now());
+
+    if (!response.ok) {
+      throw new Error("Could not load site content.");
+    }
+
+    const data = await response.json();
+
+    updateHero(data);
+    renderBanners(data.banners || []);
+    renderEvents(data.events || []);
+  } catch (error) {
+    console.error("Website content loading error:", error);
+    startBannerSlider();
+  }
+}
+
+function updateHero(data) {
+  const heroTitle = document.getElementById("heroTitle");
+  const heroDescription = document.getElementById("heroDescription");
+
+  if (heroTitle && data.hero_title) {
+    heroTitle.textContent = data.hero_title;
+  }
+
+  if (heroDescription && data.hero_description) {
+    heroDescription.textContent = data.hero_description;
+  }
+}
+
+function renderBanners(banners) {
+  const bannerTrack = document.getElementById("bannerTrack");
+
+  if (!bannerTrack) return;
+
+  bannerTrack.innerHTML = "";
+
+  banners.slice(0, 6).forEach(function (banner, index) {
+    const img = document.createElement("img");
+    img.src = banner.image;
+    img.alt = banner.alt || "Chibi Learn Up Banner " + (index + 1);
+
+    bannerTrack.appendChild(img);
+  });
+
+  startBannerSlider();
+}
+
+function renderEvents(events) {
+  const eventsGrid = document.getElementById("eventsGrid");
+
+  if (!eventsGrid) return;
+
+  eventsGrid.innerHTML = "";
+
+  events.slice(0, 12).forEach(function (eventItem, index) {
+    const eventCard = document.createElement("div");
+    eventCard.className = "event-card";
+
+    const img = document.createElement("img");
+    img.src = eventItem.image;
+    img.alt = eventItem.alt || "Chibi Learn Up Event " + (index + 1);
+
+    eventCard.appendChild(img);
+    eventsGrid.appendChild(eventCard);
+  });
+}
+
+function startBannerSlider() {
   const bannerTrack = document.getElementById("bannerTrack");
   const bannerDots = document.getElementById("bannerDots");
   const bannerPrev = document.getElementById("bannerPrev");
@@ -85,29 +159,29 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function startAutoSlide() {
+    clearInterval(bannerInterval);
     bannerInterval = setInterval(nextBannerSlide, 4500);
   }
 
   function restartAutoSlide() {
-    clearInterval(bannerInterval);
     startAutoSlide();
   }
 
   if (bannerNext) {
-    bannerNext.addEventListener("click", function () {
+    bannerNext.onclick = function () {
       nextBannerSlide();
       restartAutoSlide();
-    });
+    };
   }
 
   if (bannerPrev) {
-    bannerPrev.addEventListener("click", function () {
+    bannerPrev.onclick = function () {
       prevBannerSlide();
       restartAutoSlide();
-    });
+    };
   }
 
   createDots();
   showBanner(currentBanner);
   startAutoSlide();
-});
+}
