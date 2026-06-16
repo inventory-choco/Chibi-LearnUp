@@ -1,45 +1,44 @@
-
 {
   "hero_title": "Personalized Tuition & Skill Classes for Confident Learners",
   "hero_description": "Chibi Learn Up offers regular classes for PreKG, LKG and UKG, tuition support from LKG to Grade 12, and skill-based classes including Abacus, Drawing and Dance.",
   "banners": [
     {
       "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781513711/Banner1_vmqb5a.webp",
-      "alt": "Chibi Learn Up Banner 1"
+      "alt": "Chibi Learn Up Hindi Learning Banner"
     },
     {
       "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781513710/Banner2_ufsidi.webp",
-      "alt": "Chibi Learn Up Banner 2"
+      "alt": "Chibi Learn Up Basic Maths Banner"
     },
     {
       "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781513711/Banner3_zfqdcw.webp",
-      "alt": "Chibi Learn Up Banner 3"
+      "alt": "Chibi Learn Up English Learning Banner"
     },
     {
       "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781513861/banner4_crr4yi.webp",
-      "alt": "Chibi Learn Up Banner 4"
+      "alt": "Chibi Learn Up Malayalam Classes Banner"
     },
     {
       "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781513862/banner5_ig2ani.webp",
-      "alt": "Chibi Learn Up Banner 5"
+      "alt": "Chibi Learn Up Arabic Classes Banner"
     }
   ],
   "events": [
     {
       "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781603122/Event1_l2t5z4.webp",
-      "alt": "Chibi Learn Up Event 1"
+      "alt": "Chibi Learn Up Event Activity 1"
     },
     {
       "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781603247/Event2_ayabbk.webp",
-      "alt": "Chibi Learn Up Event 2"
+      "alt": "Chibi Learn Up Event Activity 2"
     },
     {
       "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781603246/Event3_wpqbpb.webp",
-      "alt": "Chibi Learn Up Event 3"
+      "alt": "Chibi Learn Up Event Activity 3"
     },
     {
       "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781603246/Event4_mfhbh4.webp",
-      "alt": "Chibi Learn Up Event 4"
+      "alt": "Chibi Learn Up Event Activity 4"
     }
   ]
 }
