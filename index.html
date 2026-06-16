@@ -8,6 +8,25 @@
 
   <meta name="description" content="Chibi Learn Up offers tuition classes, phonics, spoken English, drawing, Malayalam learning and activity-based learning for children." />
 
+  <script>
+  (function () {
+    const hash = window.location.hash;
+
+    const hasIdentityToken =
+      hash.includes("invite_token=") ||
+      hash.includes("confirmation_token=") ||
+      hash.includes("recovery_token=") ||
+      hash.includes("email_change_token=");
+
+    if (hasIdentityToken) {
+      const isGitHubPages = window.location.pathname.includes("/Chibi-LearnUp/");
+      const adminPath = isGitHubPages ? "/Chibi-LearnUp/admin/" : "/admin/";
+
+      window.location.replace(window.location.origin + adminPath + hash);
+    }
+  })();
+</script>
+  
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
