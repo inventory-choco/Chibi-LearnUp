@@ -1105,3 +1105,81 @@ footer {
 }
   
 }
+/* Scroll Reveal Animations */
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(34px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-item.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  transform: translateX(-42px);
+}
+
+.reveal-right {
+  transform: translateX(42px);
+}
+
+.reveal-up {
+  transform: translateY(42px);
+}
+
+.reveal-down {
+  transform: translateY(-32px);
+}
+
+.reveal-zoom {
+  transform: scale(0.94);
+}
+
+.reveal-left.reveal-visible,
+.reveal-right.reveal-visible,
+.reveal-up.reveal-visible,
+.reveal-down.reveal-visible,
+.reveal-zoom.reveal-visible {
+  transform: translateX(0) translateY(0) scale(1);
+}
+
+/* Small playful delay effect for cards */
+.program-card.reveal-item,
+.event-card.reveal-item,
+.why-card.reveal-item,
+.faq-item.reveal-item {
+  transition-duration: 0.58s;
+}
+
+/* Keep animations smooth and safe on mobile */
+@media (max-width: 768px) {
+  .reveal-left,
+  .reveal-right {
+    transform: translateY(34px);
+  }
+
+  .reveal-left.reveal-visible,
+  .reveal-right.reveal-visible {
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility: disable animations if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item,
+  .reveal-left,
+  .reveal-right,
+  .reveal-up,
+  .reveal-down,
+  .reveal-zoom {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
