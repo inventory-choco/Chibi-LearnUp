@@ -4,186 +4,505 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chibi Learn Up Admin</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-    }
-  </style>
 </head>
 <body>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
 
   <script>
-    const SitePreview = createClass({
-      render: function () {
-        const entry = this.props.entry;
-        const data = entry.getIn(["data"]).toJS();
+    const e = React.createElement;
 
-        const banners = data.banners || [];
-        const events = data.events || [];
+    function getImageUrl(getAsset, image) {
+      if (!image) return "";
+      if (image.startsWith("http")) return image;
 
-        return h("div", {
+      const asset = getAsset(image);
+      return asset ? asset.toString() : image;
+    }
+
+    function SitePreview(props) {
+      const entry = props.entry;
+      const getAsset = props.getAsset;
+
+      const data = entry.getIn(["data"]).toJS();
+
+      const heroTitle = data.hero_title || "Hero Title";
+      const heroDescription = data.hero_description || "Hero Description";
+      const banners = data.banners || [];
+      const events = data.events || [];
+
+      return e(
+        "div",
+        {
           style: {
             fontFamily: "Arial, sans-serif",
-            padding: "24px",
-            background: "#f8fbff",
-            color: "#24305a"
+            background: "#ffffff",
+            color: "#24305a",
+            lineHeight: "1.6"
           }
         },
-          h("div", {
+
+        e(
+          "div",
+          {
             style: {
+              padding: "18px 28px",
+              borderBottom: "4px solid transparent",
+              borderImage: "linear-gradient(90deg, #2f80ed, #ff8a00, #ff4f6d, #2ecc71) 1",
               background: "#ffffff",
-              borderRadius: "18px",
-              padding: "22px",
-              marginBottom: "24px",
-              boxShadow: "0 10px 30px rgba(36,48,90,0.08)"
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              position: "sticky",
+              top: "0",
+              zIndex: "10"
             }
           },
-            h("h1", {
+          e(
+            "div",
+            {
               style: {
-                fontSize: "28px",
-                marginBottom: "10px"
-              }
-            }, data.hero_title || "Hero Title"),
-
-            h("p", {
-              style: {
-                fontSize: "16px",
-                lineHeight: "1.6",
-                color: "#5c6880"
-              }
-            }, data.hero_description || "Hero Description")
-          ),
-
-          h("div", {
-            style: {
-              background: "#ffffff",
-              borderRadius: "18px",
-              padding: "22px",
-              marginBottom: "24px",
-              boxShadow: "0 10px 30px rgba(36,48,90,0.08)"
-            }
-          },
-            h("h2", {
-              style: {
-                fontSize: "22px",
-                marginBottom: "8px"
-              }
-            }, "Homepage Banners"),
-
-            h("p", {
-              style: {
-                color: "#5c6880",
-                marginBottom: "16px"
-              }
-            }, "Currently selected banners: " + banners.length + " / 6"),
-
-            h("div", {
-              style: {
-                display: "grid",
-                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                gap: "14px"
+                fontSize: "18px",
+                fontWeight: "900"
               }
             },
-              banners.map(function (banner, index) {
-                return h("div", {
-                  key: index,
-                  style: {
-                    border: "1px solid #e5eaf3",
-                    borderRadius: "14px",
-                    overflow: "hidden",
-                    background: "#ffffff"
-                  }
-                },
-                  h("img", {
-                    src: banner.image,
-                    alt: banner.alt || "Banner",
+            "Chibi Learn Up Preview"
+          ),
+          e(
+            "div",
+            {
+              style: {
+                fontSize: "13px",
+                color: "#63708a",
+                fontWeight: "700"
+              }
+            },
+            "Banners: " + banners.length + "/6  |  Events: " + events.length + "/12"
+          )
+        ),
+
+        e(
+          "section",
+          {
+            style: {
+              background: "linear-gradient(135deg, #fff7e8, #eef8ff)",
+              padding: "26px 28px"
+            }
+          },
+          e(
+            "div",
+            {
+              style: {
+                maxWidth: "900px",
+                margin: "0 auto"
+              }
+            },
+            banners.length > 0
+              ? e(
+                  "div",
+                  {
                     style: {
                       width: "100%",
-                      height: "150px",
+                      aspectRatio: "2 / 1",
+                      borderRadius: "24px",
+                      overflow: "hidden",
+                      boxShadow: "0 16px 45px rgba(36, 48, 90, 0.18)",
+                      background: "#f8fbff"
+                    }
+                  },
+                  e("img", {
+                    src: getImageUrl(getAsset, banners[0].image),
+                    alt: banners[0].alt || "Homepage Banner",
+                    style: {
+                      width: "100%",
+                      height: "100%",
                       objectFit: "cover",
                       display: "block"
                     }
-                  }),
-                  h("p", {
+                  })
+                )
+              : e(
+                  "div",
+                  {
                     style: {
-                      padding: "10px",
-                      margin: "0",
-                      fontSize: "13px",
-                      fontWeight: "700"
+                      padding: "50px",
+                      background: "#ffffff",
+                      borderRadius: "24px",
+                      textAlign: "center",
+                      color: "#63708a"
                     }
-                  }, banner.alt || "Banner " + (index + 1))
-                );
-              })
+                  },
+                  "No homepage banner selected"
+                )
+          )
+        ),
+
+        e(
+          "section",
+          {
+            style: {
+              padding: "70px 28px",
+              background:
+                "radial-gradient(circle at 8% 15%, rgba(47, 128, 237, 0.14), transparent 24%), radial-gradient(circle at 85% 20%, rgba(255, 79, 109, 0.13), transparent 22%), linear-gradient(135deg, #fff7e8, #eef8ff 52%, #fff3f6)"
+            }
+          },
+          e(
+            "div",
+            {
+              style: {
+                maxWidth: "900px",
+                margin: "0 auto",
+                display: "grid",
+                gridTemplateColumns: "1.1fr 0.9fr",
+                gap: "28px",
+                alignItems: "center"
+              }
+            },
+            e(
+              "div",
+              null,
+              e(
+                "p",
+                {
+                  style: {
+                    display: "inline-block",
+                    background: "#ffffff",
+                    color: "#ff8a00",
+                    padding: "9px 15px",
+                    borderRadius: "999px",
+                    fontWeight: "900",
+                    marginBottom: "18px",
+                    boxShadow: "0 10px 24px rgba(36,48,90,0.08)"
+                  }
+                },
+                "Admissions Open 2026–2027"
+              ),
+              e(
+                "h1",
+                {
+                  style: {
+                    fontSize: "38px",
+                    lineHeight: "1.12",
+                    marginBottom: "18px",
+                    color: "#24305a"
+                  }
+                },
+                heroTitle
+              ),
+              e(
+                "p",
+                {
+                  style: {
+                    fontSize: "17px",
+                    color: "#526078",
+                    marginBottom: "22px"
+                  }
+                },
+                heroDescription
+              ),
+              e(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    gap: "10px",
+                    flexWrap: "wrap"
+                  }
+                },
+                e(
+                  "span",
+                  {
+                    style: chipStyle()
+                  },
+                  "✓ PreKG to Grade 12"
+                ),
+                e(
+                  "span",
+                  {
+                    style: chipStyle()
+                  },
+                  "✓ Regular & Tuition Classes"
+                ),
+                e(
+                  "span",
+                  {
+                    style: chipStyle()
+                  },
+                  "✓ Abacus, Drawing & Dance"
+                )
+              )
+            ),
+            e(
+              "div",
+              {
+                style: {
+                  background: "#ffffff",
+                  borderRadius: "28px",
+                  padding: "34px",
+                  boxShadow: "0 20px 50px rgba(36,48,90,0.14)"
+                }
+              },
+              e(
+                "div",
+                {
+                  style: {
+                    width: "72px",
+                    height: "72px",
+                    borderRadius: "20px",
+                    background: "#fff3df",
+                    display: "grid",
+                    placeItems: "center",
+                    fontSize: "36px",
+                    marginBottom: "18px"
+                  }
+                },
+                "🎓"
+              ),
+              e(
+                "h3",
+                {
+                  style: {
+                    fontSize: "24px",
+                    marginBottom: "8px"
+                  }
+                },
+                "Learn From Anywhere"
+              ),
+              e(
+                "p",
+                {
+                  style: {
+                    color: "#63708a",
+                    fontSize: "15px"
+                  }
+                },
+                "Flexible classes designed for school students and young learners."
+              )
             )
-          ),
+          )
+        ),
 
-          h("div", {
+        e(
+          "section",
+          {
             style: {
-              background: "#ffffff",
-              borderRadius: "18px",
-              padding: "22px",
-              boxShadow: "0 10px 30px rgba(36,48,90,0.08)"
+              padding: "58px 28px",
+              background: "#f8fbff"
             }
           },
-            h("h2", {
+          e(
+            "div",
+            {
               style: {
-                fontSize: "22px",
-                marginBottom: "8px"
-              }
-            }, "Events & Activities"),
-
-            h("p", {
-              style: {
-                color: "#5c6880",
-                marginBottom: "16px"
-              }
-            }, "Currently selected event images: " + events.length + " / 12"),
-
-            h("div", {
-              style: {
-                display: "grid",
-                gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
-                gap: "14px"
+                maxWidth: "900px",
+                margin: "0 auto"
               }
             },
-              events.map(function (eventItem, index) {
-                return h("div", {
-                  key: index,
-                  style: {
-                    border: "1px solid #e5eaf3",
-                    borderRadius: "14px",
-                    overflow: "hidden",
-                    background: "#ffffff"
-                  }
-                },
-                  h("img", {
-                    src: eventItem.image,
-                    alt: eventItem.alt || "Event",
+            e(
+              "p",
+              {
+                style: sectionLabelStyle()
+              },
+              "Homepage Banners"
+            ),
+            e(
+              "h2",
+              {
+                style: sectionTitleStyle()
+              },
+              "Selected Banner Images"
+            ),
+            e(
+              "p",
+              {
+                style: sectionDescStyle()
+              },
+              "These are the banner images currently selected for the homepage slider."
+            ),
+            e(
+              "div",
+              {
+                style: {
+                  display: "grid",
+                  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                  gap: "16px",
+                  marginTop: "24px"
+                }
+              },
+              banners.map(function (banner, index) {
+                return e(
+                  "div",
+                  {
+                    key: index,
+                    style: cardStyle()
+                  },
+                  e("img", {
+                    src: getImageUrl(getAsset, banner.image),
+                    alt: banner.alt || "Banner " + (index + 1),
                     style: {
                       width: "100%",
-                      height: "120px",
+                      aspectRatio: "2 / 1",
                       objectFit: "cover",
                       display: "block"
                     }
                   }),
-                  h("p", {
-                    style: {
-                      padding: "10px",
-                      margin: "0",
-                      fontSize: "13px",
-                      fontWeight: "700"
-                    }
-                  }, eventItem.alt || "Event " + (index + 1))
+                  e(
+                    "p",
+                    {
+                      style: captionStyle()
+                    },
+                    banner.alt || "Banner " + (index + 1)
+                  )
                 );
               })
             )
           )
-        );
-      }
-    });
+        ),
+
+        e(
+          "section",
+          {
+            style: {
+              padding: "58px 28px",
+              background: "#ffffff"
+            }
+          },
+          e(
+            "div",
+            {
+              style: {
+                maxWidth: "900px",
+                margin: "0 auto",
+                textAlign: "center"
+              }
+            },
+            e(
+              "p",
+              {
+                style: sectionLabelStyle()
+              },
+              "Events & Activities"
+            ),
+            e(
+              "h2",
+              {
+                style: sectionTitleStyle()
+              },
+              "Moments from Our Learning Journey"
+            ),
+            e(
+              "p",
+              {
+                style: sectionDescStyle()
+              },
+              "A glimpse of activities, celebrations and learning moments conducted by Chibi Learn Up."
+            ),
+            e(
+              "div",
+              {
+                style: {
+                  display: "grid",
+                  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+                  gap: "16px",
+                  marginTop: "26px",
+                  textAlign: "left"
+                }
+              },
+              events.map(function (eventItem, index) {
+                return e(
+                  "div",
+                  {
+                    key: index,
+                    style: cardStyle()
+                  },
+                  e("img", {
+                    src: getImageUrl(getAsset, eventItem.image),
+                    alt: eventItem.alt || "Event " + (index + 1),
+                    style: {
+                      width: "100%",
+                      aspectRatio: "3 / 2",
+                      objectFit: "cover",
+                      display: "block"
+                    }
+                  }),
+                  e(
+                    "p",
+                    {
+                      style: captionStyle()
+                    },
+                    eventItem.alt || "Event " + (index + 1)
+                  )
+                );
+              })
+            )
+          )
+        )
+      );
+    }
+
+    function chipStyle() {
+      return {
+        background: "rgba(255,255,255,0.9)",
+        color: "#24305a",
+        padding: "9px 13px",
+        borderRadius: "999px",
+        fontWeight: "800",
+        fontSize: "13px",
+        border: "1px solid rgba(47,128,237,0.12)"
+      };
+    }
+
+    function sectionLabelStyle() {
+      return {
+        color: "#ff8a00",
+        fontSize: "13px",
+        textTransform: "uppercase",
+        letterSpacing: "1.2px",
+        fontWeight: "900",
+        marginBottom: "8px",
+        textAlign: "center"
+      };
+    }
+
+    function sectionTitleStyle() {
+      return {
+        fontSize: "30px",
+        color: "#24305a",
+        lineHeight: "1.2",
+        marginBottom: "12px",
+        textAlign: "center"
+      };
+    }
+
+    function sectionDescStyle() {
+      return {
+        color: "#63708a",
+        fontSize: "15px",
+        maxWidth: "680px",
+        margin: "0 auto"
+      };
+    }
+
+    function cardStyle() {
+      return {
+        background: "#ffffff",
+        borderRadius: "18px",
+        overflow: "hidden",
+        boxShadow: "0 12px 34px rgba(36,48,90,0.10)",
+        border: "1px solid #eef2f8"
+      };
+    }
+
+    function captionStyle() {
+      return {
+        padding: "10px 12px",
+        margin: "0",
+        fontSize: "13px",
+        fontWeight: "700",
+        color: "#24305a"
+      };
+    }
 
     CMS.registerPreviewTemplate("site", SitePreview);
   </script>
