@@ -1,8 +1,8 @@
 backend:
   name: test-repo
 
-media_folder: "assets/uploads"
-public_folder: "assets/uploads"
+media_folder: "assets"
+public_folder: "assets"
 
 collections:
   - name: "site"
@@ -29,15 +29,15 @@ collections:
             min: 1
             max: 6
             summary: "{{fields.alt}}"
-            hint: "Current homepage banner images. Maximum 6 banners allowed. You can delete old banners and add new ones. Recommended size: 1600 × 800 px, ratio 2:1."
+            hint: "These are the current homepage banner images. Maximum 6 banners allowed. You can remove existing banner items and add new ones. Recommended size: 1600 × 800 px, ratio 2:1. Maximum file size: 3 MB."
             fields:
               - label: "Banner Image"
                 name: "image"
                 widget: "image"
                 choose_url: false
-                media_folder: "assets/uploads/banners"
-                public_folder: "assets/uploads/banners"
-                hint: "Upload a 2:1 banner image. Recommended size: 1600 × 800 px."
+                media_folder: "assets/banner"
+                public_folder: "assets/banner"
+                hint: "Upload or choose a banner image from the banner folder. Recommended size: 1600 × 800 px. Maximum file size: 3 MB."
 
               - label: "Banner Description / Alt Text"
                 name: "alt"
@@ -48,17 +48,17 @@ collections:
             name: "events"
             widget: "list"
             min: 0
-            max: 10
+            max: 12
             summary: "{{fields.alt}}"
-            hint: "Current event/activity images shown on the website. Maximum 10 images allowed. You can delete old images and add new event photos. Recommended size: 1200 × 800 px or 1000 × 1000 px."
+            hint: "These are the current event/activity images shown on the website. Maximum 12 event images allowed. You can remove existing event items and add new ones. Recommended size: 1200 × 800 px or 1000 × 1000 px. Maximum file size: 3 MB."
             fields:
               - label: "Event Image"
                 name: "image"
                 widget: "image"
                 choose_url: false
-                media_folder: "assets/uploads/events"
-                public_folder: "assets/uploads/events"
-                hint: "Upload an event or activity photo. Recommended size: 1200 × 800 px."
+                media_folder: "assets/event"
+                public_folder: "assets/event"
+                hint: "Upload or choose an event image from the event folder. Recommended size: 1200 × 800 px. Maximum file size: 3 MB."
 
               - label: "Event Description / Alt Text"
                 name: "alt"
