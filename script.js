@@ -75,7 +75,7 @@ function renderBanners(banners) {
 
   banners.slice(0, 6).forEach(function (banner, index) {
     const img = document.createElement("img");
-    img.src = banner.image;
+    img.src = getSafeImagePath(banner.image);
     img.alt = banner.alt || "Chibi Learn Up Banner " + (index + 1);
 
     bannerTrack.appendChild(img);
