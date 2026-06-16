@@ -9,29 +9,183 @@
     body {
       font-family: Arial, sans-serif;
     }
-
-    /* Make the preview area more manageable */
-    [class*="PreviewPane"] img,
-    [class*="preview"] img,
-    .cms-preview img {
-      max-width: 320px !important;
-      max-height: 180px !important;
-      object-fit: cover !important;
-      border-radius: 12px !important;
-      margin: 8px !important;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
-    }
-
-    /* Reduce oversized preview spacing */
-    [class*="PreviewPane"],
-    .cms-preview {
-      padding: 20px !important;
-      overflow: auto !important;
-    }
   </style>
 </head>
 <body>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    const SitePreview = createClass({
+      render: function () {
+        const entry = this.props.entry;
+        const data = entry.getIn(["data"]).toJS();
+
+        const banners = data.banners || [];
+        const events = data.events || [];
+
+        return h("div", {
+          style: {
+            fontFamily: "Arial, sans-serif",
+            padding: "24px",
+            background: "#f8fbff",
+            color: "#24305a"
+          }
+        },
+          h("div", {
+            style: {
+              background: "#ffffff",
+              borderRadius: "18px",
+              padding: "22px",
+              marginBottom: "24px",
+              boxShadow: "0 10px 30px rgba(36,48,90,0.08)"
+            }
+          },
+            h("h1", {
+              style: {
+                fontSize: "28px",
+                marginBottom: "10px"
+              }
+            }, data.hero_title || "Hero Title"),
+
+            h("p", {
+              style: {
+                fontSize: "16px",
+                lineHeight: "1.6",
+                color: "#5c6880"
+              }
+            }, data.hero_description || "Hero Description")
+          ),
+
+          h("div", {
+            style: {
+              background: "#ffffff",
+              borderRadius: "18px",
+              padding: "22px",
+              marginBottom: "24px",
+              boxShadow: "0 10px 30px rgba(36,48,90,0.08)"
+            }
+          },
+            h("h2", {
+              style: {
+                fontSize: "22px",
+                marginBottom: "8px"
+              }
+            }, "Homepage Banners"),
+
+            h("p", {
+              style: {
+                color: "#5c6880",
+                marginBottom: "16px"
+              }
+            }, "Currently selected banners: " + banners.length + " / 6"),
+
+            h("div", {
+              style: {
+                display: "grid",
+                gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+                gap: "14px"
+              }
+            },
+              banners.map(function (banner, index) {
+                return h("div", {
+                  key: index,
+                  style: {
+                    border: "1px solid #e5eaf3",
+                    borderRadius: "14px",
+                    overflow: "hidden",
+                    background: "#ffffff"
+                  }
+                },
+                  h("img", {
+                    src: banner.image,
+                    alt: banner.alt || "Banner",
+                    style: {
+                      width: "100%",
+                      height: "150px",
+                      objectFit: "cover",
+                      display: "block"
+                    }
+                  }),
+                  h("p", {
+                    style: {
+                      padding: "10px",
+                      margin: "0",
+                      fontSize: "13px",
+                      fontWeight: "700"
+                    }
+                  }, banner.alt || "Banner " + (index + 1))
+                );
+              })
+            )
+          ),
+
+          h("div", {
+            style: {
+              background: "#ffffff",
+              borderRadius: "18px",
+              padding: "22px",
+              boxShadow: "0 10px 30px rgba(36,48,90,0.08)"
+            }
+          },
+            h("h2", {
+              style: {
+                fontSize: "22px",
+                marginBottom: "8px"
+              }
+            }, "Events & Activities"),
+
+            h("p", {
+              style: {
+                color: "#5c6880",
+                marginBottom: "16px"
+              }
+            }, "Currently selected event images: " + events.length + " / 12"),
+
+            h("div", {
+              style: {
+                display: "grid",
+                gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+                gap: "14px"
+              }
+            },
+              events.map(function (eventItem, index) {
+                return h("div", {
+                  key: index,
+                  style: {
+                    border: "1px solid #e5eaf3",
+                    borderRadius: "14px",
+                    overflow: "hidden",
+                    background: "#ffffff"
+                  }
+                },
+                  h("img", {
+                    src: eventItem.image,
+                    alt: eventItem.alt || "Event",
+                    style: {
+                      width: "100%",
+                      height: "120px",
+                      objectFit: "cover",
+                      display: "block"
+                    }
+                  }),
+                  h("p", {
+                    style: {
+                      padding: "10px",
+                      margin: "0",
+                      fontSize: "13px",
+                      fontWeight: "700"
+                    }
+                  }, eventItem.alt || "Event " + (index + 1))
+                );
+              })
+            )
+          )
+        );
+      }
+    });
+
+    CMS.registerPreviewTemplate("site", SitePreview);
+  </script>
 </body>
 </html>
