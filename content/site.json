@@ -24,21 +24,45 @@
     }
   ],
   "events": [
-    {
-      "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781603122/Event1_l2t5z4.webp",
-      "alt": "Chibi Learn Up Event Activity 1"
-    },
-    {
-      "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781603247/Event2_ayabbk.webp",
-      "alt": "Chibi Learn Up Event Activity 2"
-    },
-    {
-      "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781603246/Event3_wpqbpb.webp",
-      "alt": "Chibi Learn Up Event Activity 3"
-    },
-    {
-      "image": "https://res.cloudinary.com/dyfg4ffr8/image/upload/v1781603246/Event4_mfhbh4.webp",
-      "alt": "Chibi Learn Up Event Activity 4"
-    }
-  ]
+  {
+    "image": "assets/event/event1 (1).webp",
+    "alt": "Chibi Learn Up Event Activity 1"
+  },
+  {
+    "image": "assets/event/event1 (2).webp",
+    "alt": "Chibi Learn Up Event Activity 2"
+  },
+  {
+    "image": "assets/event/event1 (3).webp",
+    "alt": "Chibi Learn Up Event Activity 3"
+  },
+  {
+    "image": "assets/event/event1 (4).webp",
+    "alt": "Chibi Learn Up Event Activity 4"
+  },
+  {
+    "image": "assets/event/event1 (5).webp",
+    "alt": "Chibi Learn Up Event Activity 5"
+  },
+  {
+    "image": "assets/event/event1 (6).webp",
+    "alt": "Chibi Learn Up Event Activity 6"
+  },
+  {
+    "image": "assets/event/event1 (7).webp",
+    "alt": "Chibi Learn Up Event Activity 7"
+  },
+  {
+    "image": "assets/event/event1 (8).webp",
+    "alt": "Chibi Learn Up Event Activity 8"
+  },
+  {
+    "image": "assets/event/event1 (9).webp",
+    "alt": "Chibi Learn Up Event Activity 9"
+  },
+  {
+    "image": "assets/event/event1 (10).webp",
+    "alt": "Chibi Learn Up Event Activity 10"
+  }
+]
 }
