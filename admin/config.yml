@@ -1,9 +1,8 @@
-
 backend:
   name: test-repo
 
 media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
+public_folder: "assets/uploads"
 
 collections:
   - name: "site"
@@ -17,31 +16,51 @@ collections:
           - label: "Hero Title"
             name: "hero_title"
             widget: "string"
+            hint: "This is the main heading shown on the homepage."
 
           - label: "Hero Description"
             name: "hero_description"
             widget: "text"
+            hint: "This text appears below the main heading on the homepage."
 
-          - label: "Banners"
+          - label: "Homepage Banners"
             name: "banners"
             widget: "list"
+            min: 1
+            max: 6
+            summary: "{{fields.alt}}"
+            hint: "Current homepage banner images. Maximum 6 banners allowed. You can delete old banners and add new ones. Recommended size: 1600 × 800 px, ratio 2:1."
             fields:
-              - label: "Banner Image URL"
+              - label: "Banner Image"
                 name: "image"
-                widget: "string"
+                widget: "image"
+                choose_url: false
+                media_folder: "assets/uploads/banners"
+                public_folder: "assets/uploads/banners"
+                hint: "Upload a 2:1 banner image. Recommended size: 1600 × 800 px."
 
-              - label: "Alt Text"
+              - label: "Banner Description / Alt Text"
                 name: "alt"
                 widget: "string"
+                hint: "Short description of this banner. Example: Basic English Learning Banner."
 
-          - label: "Events"
+          - label: "Events & Activities Gallery"
             name: "events"
             widget: "list"
+            min: 0
+            max: 10
+            summary: "{{fields.alt}}"
+            hint: "Current event/activity images shown on the website. Maximum 10 images allowed. You can delete old images and add new event photos. Recommended size: 1200 × 800 px or 1000 × 1000 px."
             fields:
-              - label: "Event Image URL"
+              - label: "Event Image"
                 name: "image"
-                widget: "string"
+                widget: "image"
+                choose_url: false
+                media_folder: "assets/uploads/events"
+                public_folder: "assets/uploads/events"
+                hint: "Upload an event or activity photo. Recommended size: 1200 × 800 px."
 
-              - label: "Alt Text"
+              - label: "Event Description / Alt Text"
                 name: "alt"
                 widget: "string"
+                hint: "Short description of this event image. Example: Drawing class activity."
