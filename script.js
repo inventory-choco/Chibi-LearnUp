@@ -5,7 +5,6 @@ function toggleMenu() {
     navMenu.classList.toggle("active");
   }
 }
-
 function sendWhatsApp(event) {
   event.preventDefault();
 
