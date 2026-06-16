@@ -1,1 +1,47 @@
 
+backend:
+  name: test-repo
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "site"
+    label: "Website Content"
+    files:
+      - name: "main"
+        label: "Main Website Content"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - label: "Hero Title"
+            name: "hero_title"
+            widget: "string"
+
+          - label: "Hero Description"
+            name: "hero_description"
+            widget: "text"
+
+          - label: "Banners"
+            name: "banners"
+            widget: "list"
+            fields:
+              - label: "Banner Image URL"
+                name: "image"
+                widget: "string"
+
+              - label: "Alt Text"
+                name: "alt"
+                widget: "string"
+
+          - label: "Events"
+            name: "events"
+            widget: "list"
+            fields:
+              - label: "Event Image URL"
+                name: "image"
+                widget: "string"
+
+              - label: "Alt Text"
+                name: "alt"
+                widget: "string"
